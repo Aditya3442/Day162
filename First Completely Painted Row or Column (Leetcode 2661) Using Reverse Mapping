@@ -1,0 +1,29 @@
+class Solution {
+    public int firstCompleteIndex(int[] arr, int[][] mat) {
+       int m = mat.length;
+       int n = mat[0] .length;
+       HashMap<Integer , Integer> mpp = new HashMap<>();
+       for(int i = 0 ; i < arr.length ; i++){
+          mpp.put(arr[i] , i);
+       }
+       int mini = Integer.MAX_VALUE;
+       for(int i = 0 ; i < m ; i++){
+        int index = Integer.MIN_VALUE;
+        for(int j = 0 ; j < n ; j++){
+            index = Math.max(index , mpp.get(mat[i][j]));
+        }
+        mini = Math.min(mini , index);
+       }
+
+       int mini1 = Integer.MAX_VALUE;
+       for(int i = 0 ; i < n ; i++){
+        int index = Integer.MIN_VALUE;
+        for(int j = 0 ; j < m ; j++){
+            index = Math.max(index , mpp.get(mat[j][i]));
+        }
+        mini1 = Math.min(mini1 , index);
+       }
+   
+       return Math.min(mini , mini1);
+    }
+}
